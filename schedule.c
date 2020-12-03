@@ -98,7 +98,8 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 //get month information from the scheduler info structure
 float sched_getMonth(void* obj)
 {
-	
+	//schedInfo_t* month;
+
 }
 
 

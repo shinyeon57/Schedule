@@ -25,16 +25,20 @@ int main(int argc, char *argv[]) {
 	
 	//1. FILE pointer open & error handling
 	//fill code here ----
+	FILE *fp = fopen("schedule.txt", "r");				//open the file pointer for read mode
+	if (fp == NULL)										//error handling code
+   {
+   		printf("FILE OPEN ERROR!\n");
+    	return -1;										
+	}
 	
 	//initializing the list
 	printf("Reading the data files... \n");
 	list = (void*)list_genList();
 	
 	
-	
-	
 	//2. read from the file
-	while ( /* fill code here -- read from the file*/ )
+	while (/*fscanf */ )	/* fill code here -- read from the file*/
 	{	
 		//fill code here -- generate genSchedInfo structure by genSchedInfo function
 		
@@ -43,7 +47,7 @@ int main(int argc, char *argv[]) {
 	}
 	
 	
-	//fill code here ---- close the file pointer
+	fclose(fp);											//fill code here ---- close the file pointer
 	
 	printf("Read done! %i schedules are read\n", list_len(list));
 	
@@ -52,10 +56,15 @@ int main(int argc, char *argv[]) {
 	while(exit_flag == 0) 
 	{
 		//3. menu printing
-		//fill code here ---- 
+		printf("1.Print all the schedules\n");			//fill code here ---- 
+		printf("2.Search for schedules in the month\n");
+		printf("3.Search for schedules in the place\n");
+		printf("4.search for specific type schedule\n");
+		printf("5.exit\n");
 		
 		//4. get option from keyboard
-		//fill code here ----
+		printf("\nSELECT AN OPTION :");					//fill code here ----
+		scanf("%i", &option);
 		
 		
 		switch(option)
@@ -66,11 +75,15 @@ int main(int argc, char *argv[]) {
 				ndPtr = list;
 				while (list_isEndNode(ndPtr) == 0)
 				{
-					//file code here -- print count and each scheduling info element
+					for(cnt = 1; cnt < //? ; cnt++)										//count the schedule number????????????????????????????????
+					printf("%i.	", cnt);												//file code here -- print count and each scheduling info element
+					
 					ndPtr = list_getNextNd(ndPtr); //get the next node from the list
 					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
 					
 					//fill code this part - end
+					sched_printTypes(void);
+					sched_print(/*ndPtr*/);									//print the schedule in blank= object ?????????????
 				}
 				
 				break;
