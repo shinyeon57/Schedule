@@ -83,12 +83,20 @@ void sched_print(void* obj)
 //generating a structure of scheduling information
 void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
-	schedInfo_t* schedPtr;
-	
-	//error handler
+	schedInfo_t *schedPtr;
+	schedPtr = (struct schedInfo_t*)malloc(5*sizeof(struct shcedInfo_t));						
 
-	//allocate memory and set the member variables
+	if(schedPtr == NULL)																	//error handler??????????????????????????????
+	{
+		printf("memory allocation error!\n");
+		return	-1;
+	}
 	
+	name = schedPtr.name 	;																//allocate memory and set the member variables ???????????????
+	place = schedPtr.place	;
+	type = schedPtr.type 	;
+	month = schedPtr.month	;
+	day = schedPtr.day 		;
 	
 	return (void*)schedPtr;
 }
@@ -98,7 +106,8 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 //get month information from the scheduler info structure
 float sched_getMonth(void* obj)
 {
-	//schedInfo_t* month;
+	
+	
 
 }
 

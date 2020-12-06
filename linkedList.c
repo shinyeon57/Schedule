@@ -116,7 +116,7 @@ int list_addTail(void* obj, void* list)
 	
 	//generate new node
 	newNdPtr = genNode();
-	if (ndPtr == NULL)
+	if (newNdPtr == NULL)
 	{
 		printf("[ERROR] Failed to do addTail : Failed to create a node\n");
 		return -1; //indicate to the upper function that node addition is failed 
