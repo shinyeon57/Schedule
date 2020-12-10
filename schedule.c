@@ -78,7 +78,7 @@ void sched_print(void* obj)
 void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
 	schedInfo_t *schedPtr;
-	//schedPtr = (struct schedInfo_t*)malloc(5*sizeof(struct shcedInfo_t));						
+	schedPtr = (schedInfo_t*)malloc(5*sizeof(schedInfo_t));					//allocate memory						
 
 	if(schedPtr == NULL)																	//error handler?
 	{
@@ -86,13 +86,13 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 		return	-1;
 	}
 	
-	schedPtr = (struct schedInfo_t*)malloc(5*sizeof(struct shcedInfo_t));					//allocate memory
-	schedPtr->name = name 	;																//and set the member variables ??????????????? 
-	schedPtr->place	= place	;
+	//schedPtr = (schedInfo_t*)malloc(5*sizeof(schedInfo_t));									//allocate memory
+	strcpy(schedPtr->name, name)	;																//and set the member variables ??????????????? 
+	strcpy(schedPtr->place, place)	;
 	schedPtr->type = type 	;
 	schedPtr->month = month	;
 	schedPtr->day = day 	;
-	
+//	printf("it's running!!\n\n\n'");
 	return (void*)schedPtr;
 }
 
@@ -126,14 +126,15 @@ char* sched_getPlace(void* obj)
 
 }
 
+
 //convert the name of the type into the enum(integer) value
-int sched_convertType(char* typeName)
-{
-	int integer;
-	
-	if(typeName == )
-		integer = scheduleType_e;
-	
-	return integer;
-}
+//int sched_convertType(char* typeName)
+//{
+//	int integer;
+//	
+//	if(typeName == type_string)
+//		integer = scheduleType_e;
+//
+//	return integer;
+//}
 

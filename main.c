@@ -21,14 +21,14 @@ int main(int argc, char *argv[]) {
 	void *ndPtr;
 	void *schedInfo;
 	int option;
-	int line;											//for
+	int line = 0;											//for
 	int	i;												//for문을 위한 변수 
 	
 	//1. FILE pointer open & error handling
 	//fill code here ----
 	
 	//FILE *fp = fopen("schedule.txt", "r");				//open the file pointer for read mode
-	if ((fp = fopen("schedule.txt", "r")) == NULL)										//error handling code
+	if ((fp = fopen("schedule.dat", "r")) == NULL)										//error handling code
    {
    		printf("FILE OPEN ERROR!\n");
     	return -1;										
@@ -37,10 +37,9 @@ int main(int argc, char *argv[]) {
 	//initializing the list
 	printf("Reading the data files... \n");
 	list = (void*)list_genList();
-	
-	
+
 	//2. read from the file
-	while (fscanf(fp, "%c %i %i %i %c\n", name, &type, &month, &day, place)!=EOF)	/* fill code here -- read from the file*/		//reading the file until there's no blank
+	while (fscanf(fp, "%c %i %i %i %c\n", name, &day, &month, &day, place)!=EOF)										/* fill code here -- read from the file*/		//reading the file until there's no blank
 	{																						
 		schedInfo = sched_genSchedInfo(name, place, type, month, day);								//fill code here -- generate genSchedInfo structure by genSchedInfo function
 		line++;																						//the number of schedule 
@@ -50,7 +49,7 @@ int main(int argc, char *argv[]) {
 	
 	
 	fclose(fp);											//fill code here ---- close the file pointer
-	printf("Read done! %i schedules are read\n", list_len(list));
+	printf("Read done! %i schedules are read\n\n", list_len(list));
 	
 	
 	//program starts
@@ -76,9 +75,11 @@ int main(int argc, char *argv[]) {
 				ndPtr = list;
 				while (list_isEndNode(ndPtr) == 0)
 				{
-					for(i = 1; i<line ;i++)										//count the schedule number????????????????????????????????
-																	//file code here -- print count and each scheduling info element
-					
+					for(i=0;i<line;i++)											//printint all schedule in file_repeat until the line end
+					{	
+						printf("%i	", &i);										//file code here -- print count and each scheduling info element
+						sched_print(schedInfo); 
+					}
 					ndPtr = list_getNextNd(ndPtr); //get the next node from the list
 					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
 					
@@ -88,7 +89,7 @@ int main(int argc, char *argv[]) {
 				}
 				
 				break;
-				
+/*				
 			case 2:
 				printf("which month ? : ");
 				scanf("%i", &month);
@@ -118,10 +119,11 @@ int main(int argc, char *argv[]) {
 					
 					for(i=0;i<line;i++)							//fill code this part - end
 					{
-						if(strcmp(place, schedInfo[i]->place)==0)		//입력값이랑 스케줄 내용이 같은동안에 
+						if(strcmp(place, schedInfo.place)==0)		//입력값이랑 스케줄 내용이 같은동안에 
+						{
 							printf("&i.	", i); 
-							sched_print(/**/);						//스케줄을출력한다 
-						 
+							sched_print(schedInfo);						//스케줄을출력한다 
+						}
 					}
 				}
 				
@@ -133,8 +135,8 @@ int main(int argc, char *argv[]) {
 				printf("your choice : ");
 				scanf("%s", typeName);
 				
-				if (/* fill code here -- convert the type and check if the type is valid */)
-				{
+				if (/* fill code here -- convert the type and check if the type is valid *///)
+/*				{
 					ndPtr = list;
 					while (list_isEndNode(ndPtr) == 0)
 					{
@@ -150,7 +152,7 @@ int main(int argc, char *argv[]) {
 					printf("wrong type name!\n");
 				}
 				break;
-				
+*/				
 			case 5:
 				printf("Bye!\n\n");
 				exit_flag = 1;
