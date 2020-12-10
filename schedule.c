@@ -74,29 +74,24 @@ void sched_print(void* obj)
 
 
 
-
-
-
-
-
-
 //generating a structure of scheduling information
 void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
 	schedInfo_t *schedPtr;
-	schedPtr = (struct schedInfo_t*)malloc(5*sizeof(struct shcedInfo_t));						
+	//schedPtr = (struct schedInfo_t*)malloc(5*sizeof(struct shcedInfo_t));						
 
-	if(schedPtr == NULL)																	//error handler??????????????????????????????
+	if(schedPtr == NULL)																	//error handler?
 	{
 		printf("memory allocation error!\n");
 		return	-1;
 	}
 	
-	name = schedPtr.name 	;																//allocate memory and set the member variables ???????????????
-	place = schedPtr.place	;
-	type = schedPtr.type 	;
-	month = schedPtr.month	;
-	day = schedPtr.day 		;
+	schedPtr = (struct schedInfo_t*)malloc(5*sizeof(struct shcedInfo_t));					//allocate memory
+	schedPtr->name = name 	;																//and set the member variables ??????????????? 
+	schedPtr->place	= place	;
+	schedPtr->type = type 	;
+	schedPtr->month = month	;
+	schedPtr->day = day 	;
 	
 	return (void*)schedPtr;
 }
@@ -106,7 +101,12 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 //get month information from the scheduler info structure
 float sched_getMonth(void* obj)
 {
-	
+	schedInfo_t* schedPtr = (schedInfo_t*)obj;
+	if(schedPtr == NULL)
+	{
+		printf("MEMORY ALLOCATION ERROR!\n");
+		return -1;
+	}
 	
 
 }
@@ -129,6 +129,11 @@ char* sched_getPlace(void* obj)
 //convert the name of the type into the enum(integer) value
 int sched_convertType(char* typeName)
 {
+	int integer;
 	
+	if(typeName == )
+		integer = scheduleType_e;
+	
+	return integer;
 }
 
