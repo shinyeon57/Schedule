@@ -91,7 +91,7 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 	schedPtr->type = type 	;
 	schedPtr->month = month	;
 	schedPtr->day = day 	;
-//	printf("it's running!!\n\n\n'");
+
 	return (void*)schedPtr;
 }
 
