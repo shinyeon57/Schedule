@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 	void *ndPtr;
 	void *schedInfo;
 	int option;											
-	int	cnt = 1;												//for counting the number of schedule ; starting from 1.
+//	int	cnt = 1;												//for counting the number of schedule ; starting from 1.
 	
 	//1. FILE pointer open & error handling
 	if ((fp = fopen("schedule.dat", "r")) == NULL)										//open the file pointer for read mode & //error handling code
@@ -64,10 +64,14 @@ int main(int argc, char *argv[]) {
 		
 		switch(option)
 		{
-			case 1: //print all the schedules
+			case 1: 
+			{
+				int	cnt = 1;												//for counting the number of schedule; starting from 1 & only for this block
+				//print all the schedules
 				printf("printing all the schedules in the scheduler.....\n\n\n");
 				
 				ndPtr = list;
+			
 				while (list_isEndNode(ndPtr) == 0)
 				{	
 					printf("----------------------------------------------\n");		//printing line									
@@ -82,8 +86,12 @@ int main(int argc, char *argv[]) {
 				}
 				printf("--------------------------------------------------\n\n\n\n");		//printing line	
 				break;
-				
+			}
+			
 			case 2:
+			{
+				int	cnt = 1;												//for counting the number of schedule; starting from 1 & only for this block
+				
 				printf("WHICH MONTH ? : ");
 				scanf("%i", &month);
 				
@@ -106,8 +114,12 @@ int main(int argc, char *argv[]) {
 				}
 				printf("--------------------------------------------------\n\n\n\n");		//printing line	
 				break;
-				
+			}
+			
 			case 3:
+			{
+				int	cnt = 1;												//for counting the number of schedule; starting from 1 & only for this block
+					
 				printf("which place ? : ");
 				scanf("%s", place);
 				
@@ -130,8 +142,12 @@ int main(int argc, char *argv[]) {
 				}
 				printf("--------------------------------------------------\n\n\n\n");		//printing line	
 				break;
-				
+			}
+			
 			case 4:
+			{
+				int	cnt = 1;												//for counting the number of schedule; starting from 1 & only for this block
+					
 				printf("which type ?\n");
 				sched_printTypes();
 				printf("your choice : ");
@@ -162,7 +178,8 @@ int main(int argc, char *argv[]) {
 					printf("wrong type name!\n");
 				}
 				break;
-				
+			}
+			
 			case 5:
 				printf("Bye!\n\n");
 				exit_flag = 1;
