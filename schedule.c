@@ -80,14 +80,13 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 	schedInfo_t *schedPtr;
 	schedPtr = (schedInfo_t*)malloc(5*sizeof(schedInfo_t));					//allocate memory						
 
-	if(schedPtr == NULL)																	//error handler?
+	if(schedPtr == NULL)																	//error handler
 	{
 		printf("memory allocation error!\n");
 		return	-1;
 	}
 	
-	//schedPtr = (schedInfo_t*)malloc(5*sizeof(schedInfo_t));									//allocate memory
-	strcpy(schedPtr->name, name)	;																//and set the member variables ??????????????? 
+	strcpy(schedPtr->name, name)	;																//and set the member variables
 	strcpy(schedPtr->place, place)	;
 	schedPtr->type = type 	;
 	schedPtr->month = month	;
@@ -101,13 +100,17 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 //get month information from the scheduler info structure
 float sched_getMonth(void* obj)
 {
+	float get_month;																					
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
-	if(schedPtr == NULL)
+	
+	if(schedPtr == NULL)														//error handler
 	{
-		printf("MEMORY ALLOCATION ERROR!\n");
-		return -1;
+		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
 	}
 	
+	get_month = schedPtr->month	;												//get month information																				
+	
+	return get_month;															//for comparing in main.c ; return the value of get_month
 
 }
 
@@ -115,7 +118,17 @@ float sched_getMonth(void* obj)
 //get type information from the scheduler info structure
 int sched_getType(void* obj)
 {
+	int get_type;																					
+	schedInfo_t* schedPtr = (schedInfo_t*)obj;
 	
+	if(schedPtr == NULL)														//error handler
+	{
+		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
+	}
+	
+	get_type = schedPtr->type;													//get type information																				
+	
+	return get_type;															//for comparing in main.c ; return the value of get_type
 }
 
 
@@ -123,18 +136,41 @@ int sched_getType(void* obj)
 //get place string information from the scheduler info structure
 char* sched_getPlace(void* obj)
 {
-
+	char* get_place;																					
+	schedInfo_t* schedPtr = (schedInfo_t*)obj;
+	
+	if(schedPtr == NULL)															//error handler
+	{
+		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
+	}
+	
+	get_place = schedPtr->place;													//get place information																				
+	
+	return get_place;																//for comparing in main.c ; return the value of get_place
 }
 
 
 //convert the name of the type into the enum(integer) value
-//int sched_convertType(char* typeName)
-//{
-//	int integer;
-//	
-//	if(typeName == type_string)
-//		integer = scheduleType_e;
-//
-//	return integer;
-//}
+int sched_convertType(char* typeName)
+{	
+		
+	int integer;							//convertied value	
+
+	if(typeName == "drama")	
+		integer = 0;
+	else if(typeName == "movie")
+		integer = 1;
+	else if(typeName == "advertisement")
+		integer = 2;
+	else if(typeName == "entertainment")
+		integer = 3;
+	else if(typeName == "meeting")
+		integer = 4;
+	else if(typeName == "fitness")
+		integer = 5;
+	else if(typeName == "privacy")
+		integer = 6;
+			
+	return integer;
+}
 
