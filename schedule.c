@@ -53,7 +53,7 @@ void sched_printTypes(void)
 	int i;
 	
 	for (i=0;i<MAX_TYPE;i++) {
-		printf("- %s\n", i, type_string[i]);
+		printf("%i. %s\n", i, type_string[i]);									//printing type ex) 0. drama
 	}
 }
 
@@ -78,7 +78,7 @@ void sched_print(void* obj)
 void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
 	schedInfo_t *schedPtr;
-	schedPtr = (schedInfo_t*)malloc(5*sizeof(schedInfo_t));					//allocate memory						
+	schedPtr = (schedInfo_t*)malloc(5*sizeof(schedInfo_t));									//allocate memory						
 
 	if(schedPtr == NULL)																	//error handler
 	{
@@ -86,7 +86,7 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 		return	-1;
 	}
 	
-	strcpy(schedPtr->name, name)	;																//and set the member variables
+	strcpy(schedPtr->name, name)	;														//and set the member variables
 	strcpy(schedPtr->place, place)	;
 	schedPtr->type = type 	;
 	schedPtr->month = month	;
@@ -154,21 +154,21 @@ char* sched_getPlace(void* obj)
 int sched_convertType(char* typeName)
 {	
 		
-	int integer;							//convertied value	
+	int integer;														//convertied value	
 
-	if(typeName == "drama")	
-		integer = 0;
-	else if(typeName == "movie")
+	if(strcmp(typeName, "drama") == 0)									//comparing the string of input and string
+		integer = 0;													//return enum data
+	else if(strcmp(typeName, "movie") == 0)
 		integer = 1;
-	else if(typeName == "advertisement")
+	else if(strcmp(typeName, "advertisement") == 0)
 		integer = 2;
-	else if(typeName == "entertainment")
+	else if(strcmp(typeName, "entertainment") == 0)
 		integer = 3;
-	else if(typeName == "meeting")
+	else if(strcmp(typeName, "meeting") == 0)
 		integer = 4;
-	else if(typeName == "fitness")
+	else if(strcmp(typeName, "fitness") == 0)
 		integer = 5;
-	else if(typeName == "privacy")
+	else if(strcmp(typeName, "privacy") == 0)
 		integer = 6;
 			
 	return integer;
