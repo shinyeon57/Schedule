@@ -86,8 +86,8 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 		return	-1;
 	}
 	
-	strcpy(schedPtr->name, name)	;														//and set the member variables
-	strcpy(schedPtr->place, place)	;
+	strcpy(schedPtr->name, name)	;														//and set the member variables from file
+	strcpy(schedPtr->place, place)	;														//name & place : char ->>> using strcpy
 	schedPtr->type = type 	;
 	schedPtr->month = month	;
 	schedPtr->day = day 	;
@@ -101,16 +101,16 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 float sched_getMonth(void* obj)
 {
 	float get_month;																					
-	schedInfo_t* schedPtr = (schedInfo_t*)obj;
+	schedInfo_t* schedPtr = (schedInfo_t*)obj;												
 	
-	if(schedPtr == NULL)														//error handler
+	if(schedPtr == NULL)																	//error handler
 	{
 		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
 	}
 	
-	get_month = schedPtr->month	;												//get month information																				
+	get_month = schedPtr->month	;															//get month information																			
 	
-	return get_month;															//for comparing in main.c ; return the value of get_month
+	return get_month;																		//for comparing in main.c ; return the value of get_month
 
 }
 
@@ -121,14 +121,14 @@ int sched_getType(void* obj)
 	int get_type;																					
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
 	
-	if(schedPtr == NULL)														//error handler
+	if(schedPtr == NULL)																	//error handler
 	{
 		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
 	}
 	
-	get_type = schedPtr->type;													//get type information																				
+	get_type = schedPtr->type;																//get type information																				
 	
-	return get_type;															//for comparing in main.c ; return the value of get_type
+	return get_type;																		//for comparing in main.c ; return the value of get_type
 }
 
 
@@ -139,14 +139,14 @@ char* sched_getPlace(void* obj)
 	char* get_place;																					
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
 	
-	if(schedPtr == NULL)															//error handler
+	if(schedPtr == NULL)																//error handler
 	{
 		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
 	}
 	
-	get_place = schedPtr->place;													//get place information																				
+	get_place = schedPtr->place;														//get place information																				
 	
-	return get_place;																//for comparing in main.c ; return the value of get_place
+	return get_place;																	//for comparing in main.c ; return the value of get_place
 }
 
 
@@ -154,10 +154,10 @@ char* sched_getPlace(void* obj)
 int sched_convertType(char* typeName)
 {	
 		
-	int integer;														//convertied value	
+	int integer;																		//convertied value	
 
-	if(strcmp(typeName, "drama") == 0)									//comparing the string of input and string
-		integer = 0;													//return enum data
+	if(strcmp(typeName, "drama") == 0)													//comparing input and string if it's same
+		integer = 0;																	//return enum data
 	else if(strcmp(typeName, "movie") == 0)
 		integer = 1;
 	else if(strcmp(typeName, "advertisement") == 0)
@@ -170,6 +170,8 @@ int sched_convertType(char* typeName)
 		integer = 5;
 	else if(strcmp(typeName, "privacy") == 0)
 		integer = 6;
+	else																				
+		integer = -1;																	//for wrong input
 			
 	return integer;
 }
